@@ -1,0 +1,1563 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>A Little Birthday Surprise ♡</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #fff7f3;
+  color: #654b4b;
+  font-family: Georgia, serif;
+  text-align: center;
+}
+header { padding: 35px 18px; }
+h1 { color: #b76e79; font-size: 34px; }
+h2 { color: #b76e79; }
+p { line-height: 1.8; }
+section {
+  margin: 18px;
+  padding: 25px 18px;
+  background: #fffdfb;
+  border: 1px solid #f1dcd7;
+  border-radius: 18px;
+}
+button {
+  padding: 13px 20px;
+  border: 0;
+  border-radius: 24px;
+  background: #d994a0;
+  color: white;
+  font-size: 16px;
+  margin: 8px;
+}
+.hidden { display: none; }
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.gallery img {
+  width: 100%;
+  background: #f8e8e3;
+  padding: 7px;
+  border: 1px solid #eedbd5;
+  border-radius: 4px;
+}
+.card {
+  background: #fae9e9;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 12px;
+}
+footer { padding: 30px; }
+
+.video-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.video-gallery video {
+  width: 100%;
+  max-width: 150px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #f5e6e8;
+}
+
+
+/* OPEN WHEN YOU NEED LOVE 💌 */
+
+.open-when-section {
+  background: #FFF9F4;
+  padding: 35px 18px;
+  margin: 30px 0;
+  border-radius: 24px;
+  text-align: center;
+  color: #70534F;
+  font-family: Georgia, serif;
+  border: 1px solid #F0D9D8;
+  box-shadow: 0 8px 24px rgba(112, 83, 79, 0.08);
+}
+
+.open-when-section h2 {
+  color: #B87583;
+  font-size: 27px;
+  line-height: 1.4;
+  margin: 0 0 14px;
+}
+
+.open-when-intro {
+  max-width: 340px;
+  margin: 0 auto 28px;
+  font-size: 15px;
+  line-height: 1.9;
+  color: #806966;
+}
+
+/* ENVELOPE CARDS */
+
+.letter-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  max-width: 430px;
+  margin: 0 auto;
+}
+
+.love-envelope {
+  width: 100%;
+  min-height: 145px;
+  padding: 22px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 1px solid #E8C5C9;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #FCEBED, #FFF3E9);
+  color: #B87583;
+  font-family: Georgia, serif;
+  font-size: 38px;
+  cursor: pointer;
+  box-shadow: 0 5px 12px rgba(112, 83, 79, 0.07);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.love-envelope:active {
+  transform: scale(0.97);
+}
+
+.love-envelope span {
+  color: #70534F;
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.love-envelope small {
+  color: #A47C7C;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* LETTER POP-UP */
+
+.letter-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(68, 43, 44, 0.58);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 22px;
+  overflow-y: auto;
+  backdrop-filter: blur(4px);
+}
+
+.letter-overlay[hidden] {
+  display: none !important;
+}
+
+.letter-paper {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 38px 24px 28px;
+  box-sizing: border-box;
+  border-radius: 5px 22px 5px 22px;
+  background:
+    linear-gradient(#FFFDF8, #FFF8F0);
+  border: 1px solid #EBD9CB;
+  box-shadow: 0 18px 55px rgba(40, 20, 20, 0.2);
+  text-align: left;
+  animation: letterAppear 0.3s ease-out;
+}
+
+.letter-paper h3 {
+  color: #B87583;
+  font-family: Georgia, serif;
+  font-size: 23px;
+  text-align: center;
+  line-height: 1.5;
+  margin: 8px 0 20px;
+}
+
+.letter-paper p {
+  color: #70534F;
+  font-size: 15px;
+  line-height: 1.95;
+  white-space: pre-line;
+}
+
+.letter-paper .letter-signature {
+  text-align: right;
+  color: #B87583;
+  font-family: Georgia, serif;
+  font-style: italic;
+  margin-top: 25px;
+}
+
+.letter-close {
+  position: absolute;
+  top: 8px;
+  right: 13px;
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 50%;
+  background: #F7E4E5;
+  color: #8D5D65;
+  font-size: 27px;
+  cursor: pointer;
+}
+
+/* SOFT ENTRANCE ANIMATION */
+
+@keyframes letterAppear {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* LARGER SCREENS */
+
+@media (min-width: 600px) {
+  .letter-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 850px;
+  }
+
+  .love-envelope {
+    min-height: 175px;
+  }
+}
+
+
+
+/* BIRTHDAY CAKE SECTION 🎂 */
+
+.birthday-cake-section {
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 30px 0;
+  padding: 38px 16px;
+  border: 1px solid #F0D9D8;
+  border-radius: 26px;
+  background: linear-gradient(155deg, #FFF9F4, #FCEBED);
+  color: #70534F;
+  text-align: center;
+  font-family: Georgia, serif;
+}
+
+.cake-eyebrow {
+  color: #B87583;
+  font-size: 10px;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+}
+
+.birthday-cake-section h2 {
+  color: #B87583;
+  font-size: 27px;
+  line-height: 1.4;
+  margin: 0 0 12px;
+}
+
+.cake-intro {
+  max-width: 310px;
+  margin: 0 auto;
+  font-size: 14px;
+  line-height: 1.9;
+  color: #806966;
+}
+
+.cake-sparkle {
+  position: absolute;
+  color: #D9A4AA;
+  font-size: 30px;
+}
+
+.sparkle-one {
+  top: 24px;
+  left: 20px;
+}
+
+.sparkle-two {
+  top: 75px;
+  right: 22px;
+  font-size: 26px;
+}
+
+/* CAKE DISPLAY */
+
+.cake-scene {
+  position: relative;
+  width: 280px;
+  max-width: 100%;
+  height: 225px;
+  margin: 45px auto 10px;
+}
+
+.cake-layer {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  max-width: 85%;
+  box-sizing: border-box;
+  border: 2px solid #E8BFC3;
+  background: #F3C9CE;
+  box-shadow: inset 0 -7px 0 rgba(184, 117, 131, 0.10);
+}
+
+.cake-layer-top {
+  z-index: 2;
+  top: 75px;
+  height: 54px;
+  border-radius: 13px 13px 8px 8px;
+  background: #F7DDE0;
+}
+
+.cake-icing {
+  position: absolute;
+  z-index: 3;
+  top: 92px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  max-width: 85%;
+  height: 17px;
+  border-radius: 0 0 12px 12px;
+  background: #FFF8F0;
+  border-bottom: 2px solid #E8BFC3;
+}
+
+.cake-layer-bottom {
+  z-index: 1;
+  top: 120px;
+  height: 68px;
+  border-radius: 10px 10px 17px 17px;
+  background: #EAB3BD;
+  border-color: #D99BA7;
+}
+
+.cake-decoration {
+  display: block;
+  padding-top: 23px;
+  color: #FFF8F0;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.cake-top {
+  position: absolute;
+  z-index: 4;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 195px;
+  display: flex;
+  justify-content: space-around;
+  color: #C98591;
+  font-size: 17px;
+}
+
+.cake-plate {
+  position: absolute;
+  top: 185px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  max-width: 95%;
+  height: 14px;
+  border-radius: 50%;
+  background: #FFFDF8;
+  border: 2px solid #E8D4D1;
+  box-shadow: 0 5px 8px rgba(112, 83, 79, 0.10);
+}
+
+/* CANDLES */
+
+.cake-candles {
+  position: absolute;
+  z-index: 5;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 205px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.cake-candle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 32px;
+  min-height: 75px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.candle-flame {
+  display: block;
+  font-size: 21px;
+  line-height: 25px;
+  transform-origin: center bottom;
+  animation: flameDance 0.8s ease-in-out infinite alternate;
+}
+
+.candle-stick {
+  display: block;
+  width: 12px;
+  height: 40px;
+  border-radius: 4px 4px 2px 2px;
+  border: 1px solid rgba(112, 83, 79, 0.12);
+}
+
+.candle-pink {
+  background: repeating-linear-gradient(
+    135deg,
+    #D995A2 0 4px,
+    #F9E3E5 4px 8px
+  );
+}
+
+.candle-cream {
+  background: repeating-linear-gradient(
+    135deg,
+    #FFF8F0 0 4px,
+    #E8BFC3 4px 8px
+  );
+}
+
+.cake-candle.blown-out .candle-flame {
+  display: none;
+}
+
+.cake-candle.blown-out .candle-stick {
+  opacity: 0.65;
+}
+
+.cake-candle.blown-out::after {
+  content: "♡";
+  color: #B87583;
+  font-size: 12px;
+  position: absolute;
+  margin-top: -62px;
+}
+
+.cake-candle:focus-visible,
+.wish-again-button:focus-visible {
+  outline: 2px solid #B87583;
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+@keyframes flameDance {
+  from {
+    transform: rotate(-5deg) scale(0.95);
+  }
+  to {
+    transform: rotate(5deg) scale(1.05);
+  }
+}
+
+.candles-counter {
+  color: #A47C7C;
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 15px auto 0;
+}
+
+/* BIRTHDAY WISH REVEAL */
+
+.birthday-wish {
+  margin: 30px auto 0;
+  max-width: 420px;
+  padding: 24px 18px;
+  box-sizing: border-box;
+  border: 1px dashed #D9A4AA;
+  border-radius: 18px;
+  background: rgba(255, 253, 248, 0.85);
+  animation: wishReveal 0.8s ease both;
+}
+
+.birthday-wish[hidden] {
+  display: none !important;
+}
+
+.birthday-wish h3 {
+  margin: 20px 0;
+  color: #B87583;
+  font-size: 24px;
+  line-height: 1.5;
+}
+
+.birthday-wish p {
+  color: #70534F;
+  font-size: 14px;
+  line-height: 2;
+  text-align: left;
+}
+
+.birthday-wish .wish-divider {
+  color: #C98591;
+  font-size: 13px;
+}
+
+.birthday-wish .wish-ending {
+  text-align: center;
+  color: #B87583;
+  font-style: italic;
+}
+
+.birthday-wish .wish-signature {
+  text-align: right;
+  color: #B87583;
+  font-style: italic;
+}
+
+.wish-again-button {
+  margin-top: 14px;
+  padding: 12px 18px;
+  border: 1px solid #E8BFC3;
+  border-radius: 22px;
+  background: #FCEBED;
+  color: #8D5D65;
+  font-family: Georgia, serif;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+@keyframes wishReveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* CONFETTI */
+
+.birthday-confetti {
+  position: fixed;
+  z-index: 10000;
+  top: -20px;
+  pointer-events: none;
+  animation: confettiFall 3.2s ease-in forwards;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+
+
+/* FRIENDSHIP QUIZ 🎀 */
+
+.friendship-quiz {
+  box-sizing: border-box;
+  margin: 30px 0;
+  padding: 32px 17px;
+  border: 1px solid #F0D9D8;
+  border-radius: 25px;
+  background: linear-gradient(150deg, #FFF9F4, #FCEBED);
+  color: #70534F;
+  text-align: center;
+  font-family: Georgia, serif;
+}
+
+.friendship-quiz h2 {
+  color: #B87583;
+  font-size: 26px;
+  line-height: 1.45;
+  margin: 10px 0;
+}
+
+.quiz-eyebrow {
+  color: #B87583;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+}
+
+.quiz-intro {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #806966;
+  margin: 12px auto 25px;
+}
+
+.quiz-progress {
+  max-width: 420px;
+  margin: 0 auto 18px;
+  text-align: left;
+  font-size: 12px;
+  color: #A47C7C;
+}
+
+.quiz-progress-track {
+  height: 6px;
+  margin-top: 9px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #F1DADD;
+}
+
+#quizProgressBar {
+  width: 0;
+  height: 100%;
+  border-radius: 10px;
+  background: #C98591;
+  transition: width 0.3s ease;
+}
+
+.quiz-card {
+  box-sizing: border-box;
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 24px 17px;
+  border: 1px solid #EBD5D3;
+  border-radius: 20px;
+  background: rgba(255, 253, 248, 0.9);
+  box-shadow: 0 7px 20px rgba(112, 83, 79, 0.07);
+}
+
+.quiz-number {
+  color: #C98591;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.quiz-card h3 {
+  color: #70534F;
+  font-size: 20px;
+  line-height: 1.65;
+  margin: 18px 0 22px;
+}
+
+.quiz-options {
+  display: grid;
+  gap: 11px;
+}
+
+.quiz-option {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px;
+  border: 1px solid #EAD4D5;
+  border-radius: 13px;
+  background: #FFF9F4;
+  color: #70534F;
+  text-align: left;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s;
+}
+
+.quiz-option:active {
+  transform: scale(0.99);
+}
+
+.quiz-option.selected {
+  background: #F8E2E5;
+  border-color: #C98591;
+}
+
+.quiz-option.correct {
+  background: #E9F3E7;
+  border-color: #92B38B;
+}
+
+.quiz-option.incorrect {
+  background: #FBE6E5;
+  border-color: #D99595;
+}
+
+.quiz-option:disabled {
+  cursor: default;
+  opacity: 1;
+}
+
+.quiz-feedback {
+  min-height: 45px;
+  color: #A46E7B;
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 17px 0 8px;
+}
+
+.quiz-next {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 18px;
+  border: none;
+  border-radius: 25px;
+  background: #C98591;
+  color: white;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.quiz-next:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.quiz-results {
+  max-width: 460px;
+  box-sizing: border-box;
+  margin: 22px auto 0;
+  padding: 28px 20px;
+  border: 1px dashed #D9A4AA;
+  border-radius: 20px;
+  background: #FFFDF8;
+  animation: quizReveal 0.5s ease;
+}
+
+.quiz-results[hidden] {
+  display: none !important;
+}
+
+.quiz-result-icon {
+  font-size: 42px;
+  margin-bottom: 12px;
+}
+
+.quiz-results h3 {
+  color: #B87583;
+  font-size: 23px;
+  line-height: 1.5;
+}
+
+.quiz-score {
+  color: #B87583;
+  font-size: 48px;
+  font-weight: bold;
+  margin: 12px 0;
+}
+
+#quizResultMessage {
+  color: #70534F;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.quiz-result-signature {
+  color: #A47C7C;
+  font-size: 13px;
+  line-height: 1.8;
+  font-style: italic;
+  margin: 20px 0;
+}
+
+@keyframes quizReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+</style>
+</head>
+<body>
+
+<header>
+  <p>♡ A cute piece for my Mima
+	 ♡</p>
+  <h1>Happy Birthday!</h1>
+  <p>A tiny scrapbook of memories and love.</p>
+  <button onclick="openSurprise()">Open your surprise 💌</button>
+</header>
+
+<main id="surprise" class="hidden">
+
+<section>
+  <h2>Our Little Memories 📸</h2>
+  <p>Some moments I wish I could keep forever.</p>
+  <div class="gallery">
+    <img src="Image1.jpeg" alt="Our memory one">
+    <img src="image2.jpeg" alt="Our memory two">
+    <img src="image3.jpeg" alt="Our memory three">
+    <img src="image4.jpeg" alt="Our memory four">
+     <img src="image6.jpeg" alt="Our memory five">
+      <img src="image5.jpeg" alt="Our memory six">
+  </div>
+  <p>A collection of our faces, our madness, our random moments, and memories I wouldn't trade for anything. Nne, please look at these pictures and remember that you are stuck with me. More pictures, more gist, more laughter, and many more birthdays to celebrate together. Love you plenty, birthday girl.
+</p>
+</section>
+
+<section>
+  <h2>Little Moments 🎥</h2>
+ <div class="video-gallery">
+    <video controls playsinline width="100%">
+    <source src="video1.MOV" type="video/mp4">
+  </video>
+  <video controls playsinline width="100%">
+    <source src="video2.MOV" type="video/mp4">
+  </video>
+  <video controls playsinline width="100%">
+    <source src="video3.MOV" type="video/mp4">
+  </video>
+ </div>
+  
+  <p>Little clips, big memories. 🥹💕 If I could bottle up every happy moment with you, I would. Here's to all the beautiful memories we've made and the many more waiting for us.</p>
+</section>
+
+<section>
+  <h2>A Letter For You 💌</h2>
+  <p>
+    To my favourite human,<br><br>
+    Today is about celebrating you and the person
+    you are. I'm grateful for all our memories,
+    the laughter, the little moments and the
+    memories we are yet to make.<br><br>
+    I hope this new chapter brings you happiness,
+    beautiful surprises and everything your heart
+    wishes for.<br><br>
+    You deserve to feel celebrated today and always.
+    Happy birthday! ♡
+  </p>
+  <p>With love, your person ♡</p>
+</section>
+
+<section>
+  <h2>Reasons I Appreciate You ♡</h2>
+  <p>Tap each card to reveal a little reminder.</p>
+  <div class="card" onclick="reveal(this,'You make ordinary moments special.')">
+    Tap to reveal ♡
+  </div>
+  <div class="card" onclick="reveal(this,'I am grateful for the memories we share.')">
+    Tap to reveal ♡
+  </div>
+  <div class="card" onclick="reveal(this,'You deserve so much happiness.')">
+    Tap to reveal ♡
+  </div>
+</section>
+
+
+<!-- OPEN WHEN YOU NEED LOVE -->
+<section class="open-when-section" id="open-when">
+
+  <h2>Open When You Need Love 💌</h2>
+
+  <p class="open-when-intro">
+    For the days when I can't be right beside you,
+    here's a little piece of my heart you can always
+    come back to. ♡
+  </p>
+
+  <div class="letter-grid">
+
+    <button class="love-envelope" onclick="openLoveLetter(0)">
+      💌
+      <span>Open when you're sad</span>
+      <small>A little comfort for you ♡</small>
+    </button>
+
+    <button class="love-envelope" onclick="openLoveLetter(1)">
+      💌
+      <span>Open when you need a laugh</span>
+      <small>You know we're unserious 😂</small>
+    </button>
+
+    <button class="love-envelope" onclick="openLoveLetter(2)">
+      💌
+      <span>Open when you feel unloved</span>
+      <small>A reminder from me to you ♡</small>
+    </button>
+
+  </div>
+
+  <div id="loveLetterOverlay" class="letter-overlay" hidden>
+    <div class="letter-paper">
+      <button class="letter-close" onclick="closeLoveLetter()">×</button>
+      <h3 id="loveLetterTitle"></h3>
+      <p id="loveLetterMessage"></p>
+      <p class="letter-signature">With all my love, omah ♡</p>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- BIRTHDAY CAKE SURPRISE 🎂 -->
+<section class="birthday-cake-section" id="birthday-cake">
+
+  <span class="cake-sparkle sparkle-one">✧</span>
+  <span class="cake-sparkle sparkle-two">♡</span>
+
+  <p class="cake-eyebrow">A LITTLE BIRTHDAY MAGIC</p>
+  <h2>A Wish Just for You 🎂</h2>
+
+  <p class="cake-intro">
+    Make a little wish, birthday girl.
+    Tap each candle to blow it out! ♡
+  </p>
+
+  <div class="cake-scene">
+
+    <div class="cake-candles" id="cakeCandles">
+
+      <button class="cake-candle" aria-label="Blow out candle 1">
+        <span class="candle-flame">🔥</span>
+        <span class="candle-stick candle-pink"></span>
+      </button>
+
+      <button class="cake-candle" aria-label="Blow out candle 2">
+        <span class="candle-flame">🔥</span>
+        <span class="candle-stick candle-cream"></span>
+      </button>
+
+      <button class="cake-candle" aria-label="Blow out candle 3">
+        <span class="candle-flame">🔥</span>
+        <span class="candle-stick candle-pink"></span>
+      </button>
+
+      <button class="cake-candle" aria-label="Blow out candle 4">
+        <span class="candle-flame">🔥</span>
+        <span class="candle-stick candle-cream"></span>
+      </button>
+
+      <button class="cake-candle" aria-label="Blow out candle 5">
+        <span class="candle-flame">🔥</span>
+        <span class="candle-stick candle-pink"></span>
+      </button>
+
+    </div>
+
+    <div class="cake-top">
+      <span>♡</span>
+      <span>♡</span>
+      <span>♡</span>
+    </div>
+
+    <div class="cake-layer cake-layer-top"></div>
+    <div class="cake-icing"></div>
+    <div class="cake-layer cake-layer-bottom">
+      <span class="cake-decoration">♡　✿　♡　✿　♡</span>
+    </div>
+
+    <div class="cake-plate"></div>
+
+  </div>
+
+  <p class="candles-counter" id="candlesCounter">
+    5 little wishes waiting to be made ✨
+  </p>
+
+  <div class="birthday-wish" id="birthdayWish" hidden>
+    <div class="wish-divider">୨୧ ───── ♡ ───── ୨୧</div>
+
+    <h3>Happy Birthday, Mima! 💗</h3>
+
+    <p>
+      My future Medical Laboratory Scientist 🥼🧪, may God bless your studies, crown your efforts with success, and give you the wisdom and strength to achieve every dream in your heart.
+    </p>
+
+    <p>
+      And for this beautiful new love you’re so excited about 🥹💕, may God guide your hearts, bless your connection, and let it bring you genuine happiness, peace, and a love that grows beautifully.Never forget
+      how special you are to me.
+    </p>
+
+    <p class="wish-ending">
+      May this new year of your life be filled with answered prayers, beautiful surprises, good health, and endless reasons to smile.
+
+You deserve all the beautiful things coming your way. I love you, girl! ♡
+    </p>
+
+    <p class="wish-signature">Forever cheering for you, omah 💌</p>
+
+    <button class="wish-again-button" id="wishAgainButton">
+      Make another wish ♡
+    </button>
+  </div>
+
+</section>
+<!-- END BIRTHDAY CAKE -->
+
+
+
+
+<!-- HOW WELL DO YOU KNOW US? 🎀 -->
+<section class="friendship-quiz" id="friendship-quiz">
+  <p class="quiz-eyebrow">A LITTLE FRIENDSHIP TEST ♡</p>
+  <h2>How Well Do You Know Us? 🎀</h2>
+  <p class="quiz-intro">
+    Mima, let's see if you've actually been paying attention 😂💕
+  </p>
+
+  <div class="quiz-progress">
+    <span id="quizProgress">Question 1 of 12</span>
+    <div class="quiz-progress-track">
+      <div id="quizProgressBar"></div>
+    </div>
+  </div>
+
+  <div id="quizPlayArea">
+    <div class="quiz-card">
+      <p class="quiz-number" id="quizNumber">QUESTION 01</p>
+      <h3 id="quizQuestion"></h3>
+      <div id="quizOptions" class="quiz-options"></div>
+      <p id="quizFeedback" class="quiz-feedback" aria-live="polite"></p>
+      <button id="quizNext" class="quiz-next" disabled>
+        Choose an answer ♡
+      </button>
+    </div>
+  </div>
+
+  <div id="quizResults" class="quiz-results" hidden>
+    <div class="quiz-result-icon">💌</div>
+    <p class="quiz-eyebrow">AND THE RESULTS ARE IN...</p>
+    <h3 id="quizResultTitle">Bestie results!</h3>
+    <p class="quiz-score">
+      <span id="quizScore">0</span>/12
+    </p>
+    <p id="quizResultMessage"></p>
+    <p class="quiz-result-signature">
+      No matter your score, you're stuck with me. 😂💕
+    </p>
+    <button id="quizRestart" class="quiz-next">
+      Try again, Mima ♡
+    </button>
+  </div>
+</section>
+<!-- END FRIENDSHIP QUIZ -->
+
+
+</main>
+
+<footer>Made with love, just for you ♡</footer>
+
+<script>
+function openSurprise() {
+  document.getElementById("surprise").classList.remove("hidden");
+  document.getElementById("surprise").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+function reveal(card, message) {
+  card.textContent = message;
+}
+function answer(choice) {
+  document.getElementById("result").textContent =
+    choice === "A"
+    ? "Correct! The best memories are the ones we share. ♡"
+    : "Wrong or right, we still have beautiful memories! ♡";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const loveLetters = [
+  {
+    title: "Open when you're sad 🥺",
+    message: `Hey, my love. ♡
+
+I know some days feel heavier than others, and I wish I could be right there with you to make things feel a little easier.
+
+Please remember that one difficult day doesn't define your life. You are allowed to rest, to feel your feelings, and to take things one step at a time.
+
+You bring so much goodness into the lives of the people around you, including mine. I hope you never forget how special you are.
+
+Take a deep breath for me, okay? Better days will come, and you don't have to figure everything out today.
+
+Sending you the biggest hug ever. 🫂💕`
+  },
+
+  {
+    title: "Open when you need a laugh 😂",
+    message: `GIRLLLLL 😭😭
+
+First of all, why are you opening this letter? What have you done again? 😂
+
+I hope you know that being friends with you is genuinely one of my favourite things. The laughs, the nonsense, the random conversations, and the moments that make absolutely no sense to anyone else.
+
+Honestly, if someone recorded our conversations, we would both need to relocate. 😭
+
+If you're smiling right now, good. If you're not, read this again because I refuse to let you be serious for too long.
+
+Love you, you unserious human being. 😂💕`
+  },
+
+  {
+    title: "Open when you feel unloved 💗",
+    message: `Hey, beautiful soul. ♡
+
+If you're reading this because you feel like nobody sees you, I need you to remember something.
+
+You matter. Your feelings matter. Your dreams matter. And you deserve kindness, patience, and people who appreciate the person you are.
+
+You don't have to be perfect to be loved. You don't have to make everybody happy to deserve care. You don't have to earn your worth by doing things for other people.
+
+I hope the people in your life remind you how wonderful you are, but on the days they forget, please don't forget yourself.
+
+I'm so grateful that life gave me you as my friend.
+
+With all my love, always. 💕`
+  }
+];
+
+function openLoveLetter(index) {
+  const overlay = document.getElementById("loveLetterOverlay");
+  const title = document.getElementById("loveLetterTitle");
+  const message = document.getElementById("loveLetterMessage");
+
+  if (!overlay || !title || !message || !loveLetters[index]) {
+    return;
+  }
+
+  title.textContent = loveLetters[index].title;
+  message.textContent = loveLetters[index].message;
+  overlay.hidden = false;
+  document.body.style.overflow = "hidden";
+}
+
+function closeLoveLetter() {
+  const overlay = document.getElementById("loveLetterOverlay");
+
+  if (overlay) {
+    overlay.hidden = true;
+  }
+
+  document.body.style.overflow = "";
+}
+
+/* Close the letter when the dark background is tapped */
+document.addEventListener("click", function (event) {
+  const overlay = document.getElementById("loveLetterOverlay");
+
+  if (overlay && event.target === overlay) {
+    closeLoveLetter();
+  }
+});
+
+/* Close the letter with the Escape key */
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    closeLoveLetter();
+  }
+});
+
+
+
+
+/* BIRTHDAY CAKE MAGIC 🎂 */
+
+(function () {
+  const cake = document.getElementById("birthday-cake");
+
+  if (!cake || cake.dataset.ready === "true") {
+    return;
+  }
+
+  cake.dataset.ready = "true";
+
+  const candles = cake.querySelectorAll(".cake-candle");
+  const counter = document.getElementById("candlesCounter");
+  const wish = document.getElementById("birthdayWish");
+  const againButton = document.getElementById("wishAgainButton");
+
+  let blownOut = 0;
+
+  function celebrateWithConfetti() {
+    const pieces = ["♡", "✿", "✧", "•", "💕"];
+    const colors = ["#D995A2", "#F3C9CE", "#E8D5C5", "#FFF8F0", "#C98591"];
+
+    for (let i = 0; i < 75; i++) {
+      const piece = document.createElement("span");
+
+      piece.className = "birthday-confetti";
+      piece.textContent = pieces[Math.floor(Math.random() * pieces.length)];
+
+      piece.style.left = Math.random() * 100 + "vw";
+      piece.style.color = colors[Math.floor(Math.random() * colors.length)];
+      piece.style.fontSize = (12 + Math.random() * 15) + "px";
+      piece.style.animationDelay = (Math.random() * 1.2) + "s";
+      piece.style.animationDuration = (2.5 + Math.random() * 2) + "s";
+
+      document.body.appendChild(piece);
+
+      piece.addEventListener("animationend", function () {
+        piece.remove();
+      }, { once: true });
+    }
+  }
+
+  function resetCake() {
+    blownOut = 0;
+
+    candles.forEach(function (candle) {
+      candle.classList.remove("blown-out");
+      candle.setAttribute("aria-pressed", "false");
+      candle.disabled = false;
+    });
+
+    counter.textContent = "5 little wishes waiting to be made ✨";
+    wish.hidden = true;
+  }
+
+  candles.forEach(function (candle, index) {
+    candle.setAttribute("aria-pressed", "false");
+
+    candle.addEventListener("click", function () {
+      if (candle.classList.contains("blown-out")) {
+        return;
+      }
+
+      candle.classList.add("blown-out");
+      candle.setAttribute("aria-pressed", "true");
+      candle.disabled = true;
+      blownOut++;
+
+      const remaining = candles.length - blownOut;
+
+      if (remaining > 0) {
+        counter.textContent =
+          remaining + (remaining === 1
+            ? " little wish left! ✨"
+            : " little wishes left ✨");
+      } else {
+        counter.textContent = "All your candles are out! Make a wish,love! 💗";
+        wish.hidden = false;
+        celebrateWithConfetti();
+
+        wish.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest"
+        });
+      }
+    });
+  });
+
+  againButton.addEventListener("click", resetCake);
+})();
+
+
+
+/* MIMA & OMAH'S FRIENDSHIP QUIZ 💗 */
+
+(function () {
+  const quiz = document.getElementById("friendship-quiz");
+
+  if (!quiz || quiz.dataset.ready === "true") return;
+  quiz.dataset.ready = "true";
+
+  const questions = [
+    {
+      question: "Who do we gossip about the most? 👀",
+      options: ["Malik", "Your ex", "Kamsy", "Amar"],
+      answer: "Amar",
+      correct: "GIRL, you know the gist! 😂☕",
+      wrong: "AMAR! How could you forget our regular?? 😭"
+    },
+    {
+      question: "Who gets drunk easily? 😂",
+      options: ["Malik", "Oma", "Mima", "Pheely"],
+      answer: "Mima",
+      correct: "Thank God you know yourself😭😂",
+      wrong: "Don't ruin somebody's reputation abeg! 😂"
+    },
+    {
+      question: "Who is more dramatic between us? 🎭",
+      options: ["Oma", "Mima", "Both of us", "Neither"],
+      answer: "Mima",
+      correct: "The drama department has found its president. 😭👑",
+      wrong: "Mima is somewhere preparing her next performance. 😂"
+    },
+    {
+      question: "Who is more likely to fall in love and start acting different? 😭💕",
+      options: ["Oma", "Mima", "Both of us", "Neither"],
+      answer: "Mima",
+      correct: "LOVE IS IN THE AIRRR😭ololoooo 🥹💗",
+      wrong: "Mima's new love life would like a word with you. 😂💕"
+    },
+    {
+      question: "Who gives the best advice but doesn't always take their own advice? 😂",
+      options: ["Oma", "Mima", "Both of us", "Neither"],
+      answer: "Neither",
+      correct: "Look at us being emotionally intelligent! For once. 😭😂",
+      wrong: "As how😭👀"
+    },
+    {
+      question: "Who is more likely to reply to gist with a voice note? 🎙️",
+      options: ["Oma", "Mima", "Both of us", "Neither"],
+      answer: "Mima",
+      correct: "A whole podcast is coming. Somebody press play! 😂🎙️",
+      wrong: "Mima has a 7-minute voice note waiting for you. 😭"
+    },
+    {
+      question: "Who is more stubborn? 😭",
+      options: ["Oma", "Mima", "Both of us", "Neither"],
+      answer: "Mima",
+      correct: "Stubbornness level: professionally certified. 😂",
+      wrong: "Mima would like to disagree, obviously. 😭"
+    },
+    {
+      question: "Who is more likely to overthink a message? 👀",
+      options: ["Oma", "Mima", "Both of us", "Neither"],
+      answer: "Oma",
+      correct: "Oma has analysed the punctuation, tone and timestamp. 😭📱",
+      wrong: "Oma is currently reviewing your answer. 😂"
+    },
+    {
+      question: "Who is more likely to laugh at the wrong time? 😂",
+      options: ["Oma", "Mima", "Both of us", "Neither"],
+      answer: "Mima",
+      correct: "PLEASE, WHY ARE YOU LAUGHING? 😭😭😂",
+      wrong: "Mima would be laughing at this correction too. 😂"
+    },
+    {
+      question: "What is Mima studying? 🥼🧪",
+      options: [
+        "Medicine",
+        "Medical Laboratory Science",
+        "Pharmacy",
+        "Nursing"
+      ],
+      answer: "Medical Laboratory Science",
+      correct: "Future Medical Laboratory Scientist in the making! 🥼🧪💗",
+      wrong: "Mima's future patients are counting on you to know this! 😂"
+    },
+    {
+      question: "What is Mima currently excited about? 🥹💗",
+      options: [
+        "A new business",
+        "Her new love life",
+        "Travelling",
+        "Graduation"
+      ],
+      answer: "Her new love life",
+      correct: "WE KNOW ABOUT THIS NEW LOVE OOOH! 😭💕",
+      wrong: "Not you forgetting the current romantic storyline! 😂💗"
+    },
+    {
+      question: "What describes our friendship best? 💌",
+      options: [
+        "Peace and quiet",
+        "Gist and madness",
+        "Constant arguments",
+        "We barely talk"
+      ],
+      answer: "Gist and madness",
+      correct: "GIST AND MADNESS FOREVERRR! 😂💕",
+      wrong: "Be serious, Mima. You know us better than that. 😭"
+    }
+  ];
+
+  const progress = document.getElementById("quizProgress");
+  const progressBar = document.getElementById("quizProgressBar");
+  const number = document.getElementById("quizNumber");
+  const questionTitle = document.getElementById("quizQuestion");
+  const optionsBox = document.getElementById("quizOptions");
+  const feedback = document.getElementById("quizFeedback");
+  const nextButton = document.getElementById("quizNext");
+  const playArea = document.getElementById("quizPlayArea");
+  const results = document.getElementById("quizResults");
+  const scoreText = document.getElementById("quizScore");
+  const resultTitle = document.getElementById("quizResultTitle");
+  const resultMessage = document.getElementById("quizResultMessage");
+  const restartButton = document.getElementById("quizRestart");
+
+  let current = 0;
+  let score = 0;
+  let answered = false;
+
+  function showQuestion() {
+    answered = false;
+
+    const q = questions[current];
+
+    progress.textContent =
+      "Question " + (current + 1) + " of " + questions.length;
+
+    progressBar.style.width =
+      (current / questions.length * 100) + "%";
+
+    number.textContent =
+      "QUESTION " + String(current + 1).padStart(2, "0");
+
+    questionTitle.textContent = q.question;
+    optionsBox.replaceChildren();
+    feedback.textContent = "";
+
+    nextButton.disabled = true;
+    nextButton.textContent = "Choose an answer ♡";
+
+    q.options.forEach(function (option) {
+      const button = document.createElement("button");
+
+      button.type = "button";
+      button.className = "quiz-option";
+      button.textContent = option;
+
+      button.addEventListener("click", function () {
+        if (answered) return;
+        answered = true;
+
+        const isCorrect = option === q.answer;
+
+        if (isCorrect) score++;
+
+        optionsBox.querySelectorAll("button").forEach(function (item) {
+          item.disabled = true;
+
+          if (item.textContent === q.answer) {
+            item.classList.add("correct");
+          } else if (item === button && !isCorrect) {
+            item.classList.add("incorrect");
+          }
+        });
+
+        feedback.textContent = isCorrect ? q.correct : q.wrong;
+
+        nextButton.disabled = false;
+        nextButton.textContent =
+          current === questions.length - 1
+            ? "Reveal my results 💌"
+            : "Next question →";
+      });
+
+      optionsBox.appendChild(button);
+    });
+  }
+
+  function showResults() {
+    playArea.hidden = true;
+    results.hidden = false;
+
+    progress.textContent = "Quiz completed! 💗";
+    progressBar.style.width = "100%";
+    scoreText.textContent = score;
+
+    if (score === 12) {
+      resultTitle.textContent = "Mima, THE BESTIE EXPERT! 👑";
+      resultMessage.textContent =
+        "12/12?! you no go sabi us ke😭😭";
+    } else if (score >= 9) {
+      resultTitle.textContent = "Certified Bestie! 💗";
+      resultMessage.textContent =
+        "You know your us very well! A few details escaped sha, but our friendship credentials remain valid. 😂💕";
+    } else if (score >= 6) {
+      resultTitle.textContent = "ololoooooo 😭";
+      resultMessage.textContent =
+        "Mima, we need to schedule an emergency gist session. Some of these answers were suspicious! 😂 You are still loved, though. 💗";
+    } else {
+      resultTitle.textContent = "WHO ARE YOU, PLEASE? 😭😂";
+      resultMessage.textContent =
+        "Mima, did you just meet us yesterday? We have some catching up to do! Consider this your official invitation to more gist and madness. 💌💕";
+    }
+
+    results.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  }
+
+  nextButton.addEventListener("click", function () {
+    if (!answered) return;
+
+    current++;
+
+    if (current < questions.length) {
+      showQuestion();
+    } else {
+      showResults();
+    }
+  });
+
+  restartButton.addEventListener("click", function () {
+    current = 0;
+    score = 0;
+    answered = false;
+
+    results.hidden = true;
+    playArea.hidden = false;
+
+    showQuestion();
+
+    quiz.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  });
+
+  showQuestion();
+})();
+
+
+
+
+
+</script>
+
+</body>
+</html>
+
